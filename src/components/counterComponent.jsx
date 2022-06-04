@@ -13,13 +13,17 @@ class Counter extends Component {
   render() {
     return (
       <React.Fragment>
-        <span style={this.styles} className="badge bg-primary m-2">
-          {this.formatCount()}
-        </span>{" "}
+        <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         {/*Note that in bootstrap 5 we have to use bg-primary instead of badge-primary*/}
         <button className="btn btn-secondary btn-sm">Increment</button>
       </React.Fragment>
     );
+  }
+
+  getBadgeClasses() {
+    let classes = "badge m-2 bg-";
+    classes += this.state.count === 0 ? "warning" : "primary";
+    return classes;
   }
   formatCount() {
     {
